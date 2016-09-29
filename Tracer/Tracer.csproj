@@ -43,6 +43,7 @@
     <Compile Include="Classes\Interfaces\ITracer.cs" />
     <Compile Include="Classes\Interfaces\ITraceResultFormatter.cs" />
     <Compile Include="Classes\Tracer\MethodInfo.cs" />
+    <Compile Include="Classes\Tracer\MethodTrace.cs" />
     <Compile Include="Classes\Tracer\ThreadTrace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Tracer.cs" />
