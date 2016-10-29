@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Tracer.Classes.Tracer
+namespace Tracer.Classes.TracerInfo
 {
     class MethodTrace
     {
         public List<MethodTrace> NestedMethods { get; }
-        public TracerInfo.MethodInfo MethodInfo;
+        public MethodMetadata Metadata;
         private Stopwatch _stopwatch;
 
         internal MethodTrace(MethodBase methodBase)
         {
             CreateStopwatch();
-            MethodInfo = new TracerInfo.MethodInfo(methodBase);
+            Metadata = new MethodMetadata(methodBase);
             NestedMethods = new List<MethodTrace>();
         }
 
-        public void AddNestedMethod(MethodTrace methodTrace)
+        public void AddNestedMethod(MethodTrace nestedTrace)
         {
-            NestedMethods.Add(methodTrace);
+            NestedMethods.Add(nestedTrace);
         }
 
         public void StopMeteringTime()

@@ -1,27 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
+using Tracer.Interfaces;
 
-namespace Tracer
+namespace Tracer.Classes
 {
     public sealed class Tracer : ITracer
     {
+        private readonly TraceResult _traceResult;
+
+        public Tracer()
+        {
+            _traceResult = new TraceResult();
+        }
         public TraceResult GetTraceResult()
         {
-            throw new NotImplementedException();
+            return _traceResult;
         }
 
         public void StartTrace()
         {
-            throw new NotImplementedException();
+            var method = new StackTrace(1).GetFrame(0).GetMethod();
+            var idThread = Thread.CurrentThread.ManagedThreadId;
+            _traceResult.StartListenThread(idThread, method);
         }
 
         public void StopTrace()
         {
+            var idThread = Thread.CurrentThread.ManagedThreadId;
+            _traceResult.StopListenThread(idThread);
         }
     }
 }

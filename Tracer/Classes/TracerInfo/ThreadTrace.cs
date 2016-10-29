@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tracer.Classes.Tracer;
 
 namespace Tracer.Classes.TracerInfo
 {
@@ -11,11 +7,14 @@ namespace Tracer.Classes.TracerInfo
     {
         private readonly Stack<MethodTrace> _stackMethods;
         public List<MethodTrace> MethodList { get; }
+
         internal ThreadTrace()
         {
             _stackMethods = new Stack<MethodTrace>();
             MethodList = new List<MethodTrace>();
         }
+
+        public long ExecutionTime => MethodList.Select(p => p.GetExecutionTime()).Sum();
 
         public void StartListenMethod(MethodTrace methodTrace)
         {
@@ -29,6 +28,7 @@ namespace Tracer.Classes.TracerInfo
             }
             _stackMethods.Push(methodTrace);
         }
+
         public void StopListenMethod()
         {
             _stackMethods.Pop().StopMeteringTime();

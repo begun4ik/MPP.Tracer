@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace Tracer.Classes.TracerInfo
 {
-    class MethodInfo
+    class MethodMetadata
     {
         public string Name { get; }
         public string ClassName { get; }
         public int CountParameters { get; }
 
-        internal MethodInfo(MethodBase methodBase)
+        internal MethodMetadata(MethodBase methodBase)
         {
             Name = methodBase.Name;
             ClassName = methodBase.DeclaringType?.ToString();

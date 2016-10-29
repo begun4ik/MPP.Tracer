@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Tracer.Classes;
 
-namespace Tracer
+namespace Tracer.Interfaces
 {
     internal interface ITracer
     {
