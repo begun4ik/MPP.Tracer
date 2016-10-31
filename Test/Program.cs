@@ -12,11 +12,29 @@ namespace Test
         {
             tracer.StartTrace();
 
+            TestMethod();
+
+            //TestMethod3();
+
+            //TestMethod1(10);
+
+            //TestMethod4();
+
+            tracer.StopTrace();
+
+            PrintInfo();
+            Console.ReadKey();
+        }
+
+        private static void TestMethod()
+        {
+            tracer.StartTrace();
+
             TestMethod1(10);
             TestMethod2(10);
 
             var threads = new List<Thread>();
-            for (var i = 0; i < 1; i++)
+            for (var i = 0; i < 20; i++)
             {
                 var thread = i % 3 == 0 ? new Thread(TestMethod1) : new Thread(TestMethod2);
                 threads.Add(thread);
@@ -29,9 +47,6 @@ namespace Test
             }
 
             tracer.StopTrace();
-
-            PrintInfo();
-            Console.ReadKey();
         }
 
         private static void TestMethod1(object value)
@@ -54,6 +69,29 @@ namespace Test
             {
                 test += i;
             }
+
+            tracer.StopTrace();
+        }
+
+        private static void TestMethod3()
+        {
+            tracer.StartTrace();
+
+            TestMethod2(10);
+
+            tracer.StopTrace();
+        }
+
+        private static void TestMethod4()
+        {
+            tracer.StartTrace();
+
+            var thread = new Thread(TestMethod3);
+            thread.Start();
+
+            TestMethod3();
+
+            thread.Join();
 
             tracer.StopTrace();
         }

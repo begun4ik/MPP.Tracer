@@ -26,7 +26,5 @@ namespace Tracer.Classes
                 threadInfo.StopListenMethod();
             }
         }
-
-        //public IEnumerable<KeyValuePair<int, ThreadTrace>> ThreadsInfo { get { return _threadsInfo; } }
     }
 }
