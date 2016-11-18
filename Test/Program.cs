@@ -14,6 +14,8 @@ namespace Test
 
             TestMethod();
 
+            TestMethod6();
+
             //TestMethod3();
 
             //TestMethod1(10);
@@ -63,6 +65,7 @@ namespace Test
             var test = 0;
 
             Thread.Sleep(100);
+
             TestMethod1(0);
 
             for (var i = 0; i < (int)value; i++)
@@ -74,6 +77,27 @@ namespace Test
         }
 
         private static void TestMethod3()
+        {
+            tracer.StartTrace();
+
+            TestMethod2(10);
+
+            tracer.StopTrace();
+        }
+
+        private static void TestMethod6()
+        {
+            tracer.StartTrace();
+
+            for (var i = 0; i < 10; ++i)
+            {
+                TestMethod5();
+            }
+
+            tracer.StopTrace();
+        }
+
+        private static void TestMethod5()
         {
             tracer.StartTrace();
 
@@ -98,12 +122,10 @@ namespace Test
 
         private static void PrintInfo()
         {
-            var xmlFormatter = new XmlFormatter("Result.xml");
+            var xmlFormatter = new XmlFormatter(null);
             var consoleFormatter = new ConsoleFormatter();
-
             consoleFormatter.Format(tracer.GetTraceResult());
             xmlFormatter.Format(tracer.GetTraceResult());
-
         }
     }
 }

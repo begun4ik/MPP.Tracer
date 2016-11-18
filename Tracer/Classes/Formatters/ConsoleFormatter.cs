@@ -5,14 +5,15 @@ using Tracer.Interfaces;
 
 namespace Tracer.Classes.Formatters
 {
-    public class ConsoleFormatter: ITraceResultFormatter
+    public sealed class ConsoleFormatter: ITraceResultFormatter
     {
         public void Format(TraceResult traceResult)
         {
-            foreach(var threadInfo in traceResult.ThreadsInfo)
+            if (traceResult == null) return;
+            foreach (var threadInfo in traceResult.ThreadsInfo)
             {
                 Console.WriteLine($"Thread id: {threadInfo.Key}; Time: {threadInfo.Value.ExecutionTime};");
-                foreach(var methodInfo in threadInfo.Value.MethodList)
+                foreach (var methodInfo in threadInfo.Value.MethodList)
                 {
                     WriteMthodInfo(methodInfo);
                 }

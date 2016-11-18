@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Tracer.Classes.TracerInfo
 {
-    class ThreadTrace
+    internal sealed class ThreadTrace
     {
         private readonly Stack<MethodTrace> _stackMethods;
         public List<MethodTrace> MethodList { get; }

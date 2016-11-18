@@ -4,7 +4,7 @@ using Tracer.Classes.TracerInfo;
 
 namespace Tracer.Classes
 {
-    public class TraceResult
+    public sealed class TraceResult
     {
         internal ConcurrentDictionary<int, ThreadTrace> ThreadsInfo;
         internal TraceResult()

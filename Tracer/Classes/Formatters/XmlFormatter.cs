@@ -5,24 +5,25 @@ using Tracer.Interfaces;
 
 namespace Tracer.Classes.Formatters
 {
-    public class XmlFormatter: ITraceResultFormatter
+    public sealed class XmlFormatter: ITraceResultFormatter
     {
         private readonly string _filePath;
         public XmlFormatter(string filePath)
         {
-            _filePath = filePath;
+            _filePath = filePath ?? "DefaultResult.xml";
         }
 
         public void Format(TraceResult traceResult)
         {
+            if (traceResult == null) return;
             var xDoc = new XDocument();
             var rootElement = new XElement("root");
 
-            foreach(var threadInfo in traceResult.ThreadsInfo)
+            foreach (var threadInfo in traceResult.ThreadsInfo)
             {
                 var threadElement = GetInfoThread(threadInfo);
 
-                foreach(var methodInfo in threadInfo.Value.MethodList)
+                foreach (var methodInfo in threadInfo.Value.MethodList)
                 {
                     threadElement.Add(GetAllInfoMethod(methodInfo));
                 }

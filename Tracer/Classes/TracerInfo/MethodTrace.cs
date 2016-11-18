@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Tracer.Classes.TracerInfo
 {
-    class MethodTrace
+    internal sealed class MethodTrace
     {
         public List<MethodTrace> NestedMethods { get; }
         public MethodMetadata Metadata;

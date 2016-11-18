@@ -2,7 +2,7 @@
 
 namespace Tracer.Classes.TracerInfo
 {
-    class MethodMetadata
+    internal sealed class MethodMetadata
     {
         public string Name { get; }
         public string ClassName { get; }
